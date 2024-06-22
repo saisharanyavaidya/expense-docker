@@ -10,6 +10,8 @@ RUN mkdir /opt/server
 WORKDIR /opt/server
 #Make expense user as owner of created directory
 RUN chown expense:expense -R /opt/server
+#copy package.json to present working dir so that we can install required dependencies here we do npm install in below RUN instruction
+COPY package.json .
 #copy all the js files into current working directory i.e., /opt/server which we can refer by dot(.)
 COPY *.js .
 RUN npm install
