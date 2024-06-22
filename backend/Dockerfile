@@ -5,7 +5,7 @@ EXPOSE 8080
 ENV DB_HOST=mysql
 RUN useradd expense
 #Create a directory /opt/server.. we can use any directory we want similar to /app we used before
-RUN /opt/server
+RUN mkdir /opt/server
 #Move to /opt/server directory
 WORKDIR /opt/server
 #Make expense user as owner of created directory
