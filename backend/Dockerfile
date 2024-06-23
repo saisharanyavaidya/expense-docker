@@ -1,7 +1,7 @@
 FROM node:20
 # Expose 8080 port so that this container will be listened on 8080 port by any other containers
 EXPOSE 8080
-#Before this In Expense backend project we created backend.service to configure DB_HOST details.. we directly configure now
+#Before this In Expense backend project we created backend.service to configure DB_HOST details.. we directly configure now(mysql is container name of DB)
 ENV DB_HOST=mysql
 RUN useradd expense
 #Create a directory /opt/server.. we can use any directory we want similar to /app we used before
