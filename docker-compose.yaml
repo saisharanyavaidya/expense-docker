@@ -1,0 +1,23 @@
+name: expense
+# It will check if a network named expense is there, otherwise it will create a network named expense.. It is written on top level, hence it is applicable to all services
+networks:
+  default:
+    name: expense
+#For docker-compose.yaml file to work, images should be already available.. Since it refers existing images and create containers out of it.. Use below command to create images
+#For i in backend frontend mysql ; do cd $i ; docker build -t $i:v1.0.0 . ; cd .. ; done 
+services:
+  mysql:
+    image: mysql:v1.0.0
+    container_name: mysql #name of the container to be created
+  backend:
+    image: backend:v1.0.0
+    container_name: backend
+    depends_on:
+      - mysql
+  frontend:
+    image: frontend:v1.0.0
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
