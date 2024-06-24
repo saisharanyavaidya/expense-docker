@@ -1,5 +1,5 @@
 name: expense
-# It will check if a network named expense is there, otherwise it will create a network named expense.. It is written on top level, hence it is applicable to all services
+# It will create a network named expense.. It is written on top level, hence it is applicable to all services
 networks:
   default:
     name: expense
@@ -12,6 +12,9 @@ services:
   backend:
     image: backend:v1.0.0
     container_name: backend
+    #this means backend should wait for sometime so that mysql gets completed in that time as it depends on mysql creation.. otherwise we get connection error from backend while connecting to mysql
+    # node /opt/server/index.js this is similar to CMD["node","index.js"]
+    command: sh -c "sleep 20 && node /opt/server/index.js"
     depends_on:
       - mysql
   frontend:
