@@ -10,13 +10,15 @@ ENV DB_HOST=mysql
 RUN addgroup -S expense && adduser -S expense -G expense \
     && mkdir /opt/server \
     && chown expense:expense -R /opt/server 
+WORKDIR /opt/server
 #copy package.json to present working dir so that we can install required dependencies here we do npm install in below RUN instruction
 COPY package.json .
 #copy all the js files into current working directory i.e., /opt/server which we can refer by dot(.)
-COPY *.js .
+COPY *.js /opt/server/
 RUN npm install
 #this means backend should run with expense user and not with root user
 USER expense
+EXPOSE 8081
 #Before this In Expense backend project we created backend.service to configure which js file to run on start of backend service.. we directly configure now
 #Load and run index.js during container creation --> docker run command
 CMD [ "node","index.js" ]
