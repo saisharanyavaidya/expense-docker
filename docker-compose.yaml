@@ -5,7 +5,7 @@ networks:
     name: expense
 volumes:
   mysql:
-    external: true # this means you have to create docker volume manually using command --> docker volume create mysql
+    #external: true # this means you have to create docker volume manually using command --> docker volume create mysql
 #For docker-compose.yaml file to work, images should be already available.. Since it refers existing images and create containers out of it.. Use below command to create images
 #For i in backend frontend mysql ; do cd $i ; docker build -t $i:v1.0.0 . ; cd .. ; done 
 services:
