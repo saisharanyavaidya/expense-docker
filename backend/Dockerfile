@@ -18,7 +18,6 @@ COPY *.js /opt/server/
 RUN npm install
 #this means backend should run with expense user and not with root user
 USER expense
-EXPOSE 8081
 #Before this In Expense backend project we created backend.service to configure which js file to run on start of backend service.. we directly configure now
 #Load and run index.js during container creation --> docker run command
 CMD [ "node","index.js" ]
